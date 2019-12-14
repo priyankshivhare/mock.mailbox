@@ -18,15 +18,16 @@ app.post('/api/verifyCredentials/', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     if (verifyCredentials(username, password)) {
-        return res.send(200, "OK");
+        const userData = _.get(mockData, `userMailData.${username}`);
+        return res.send(200, userData);
     }
     return res.send(401, "Unauthorized");
 
 });
 
 function verifyCredentials(username, password) {
-    if (_.get(mockData, `data.${username}`)) {
-        const mockPassword = _.get(mockData, `data.${username}.password`);
+    if (_.get(mockData, `loginData.${username}`)) {
+        const mockPassword = _.get(mockData, `loginData.${username}.password`);
         return convertToBase64(password) === mockPassword;
     }
     return false;

@@ -1,32 +1,37 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './styles/app.css';
 import Login from './components/login';
+import Mailbox from './components/mailbox';
 import axios from 'axios';
 
 export default class App extends Component {
-  state = { username: null };
 
-  /*
-  componentDidMount() {
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
-  }
-*/
-  constructor(props) {
-    super(props);
-    this.verifyCreds = this.verifyCreds.bind(this);
-  }
+    constructor(props) {
+        super(props);
+        this.state = {isUserAuthenticated: false};
+        this.verifyCreds = this.verifyCreds.bind(this);
+        this.onLogout = this.onLogout.bind(this);
+    }
 
-  render() {
-    return (
-      <Login
-          submitCreds={this.verifyCreds}/>
-    );
-  }
+    render() {
+        return this.state.isUserAuthenticated
+            ? <Mailbox
+                userData={this.state.userData}
+                onLogout={this.onLogout}/>
+            : <Login
+                submitCreds={this.verifyCreds}/>;
+    }
 
     verifyCreds(username, password) {
-        axios.post('/api/verifyCredentials/', { username, password })
-        .then(res => console.log(res));
+        axios.post('/api/verifyCredentials/', {username, password})
+            .then((userData) => {
+                this.setState({isUserAuthenticated: true, userData});
+            }).catch(() => {
+            this.setState({isUserAuthenticated: false, userData: undefined});
+        });
+    }
+
+    onLogout() {
+        this.setState({isUserAuthenticated: false, userData: undefined});
     }
 }
