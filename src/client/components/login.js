@@ -34,7 +34,7 @@ export default class Login extends Component {
                         value={this.state.password}
                         onChange={this.changePassword}
                     />
-                    <button className="btn btn-primary" onClick={this.submitCreds}>Login</button>
+                    <button className="btn-login btn btn-primary" onClick={this.submitCreds}>Login</button>
                 </div>
             </div>
         );

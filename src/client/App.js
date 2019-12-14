@@ -17,7 +17,7 @@ export default class App extends Component {
         return this.state.isUserAuthenticated
             ? <Mailbox
                 userData={this.state.userData}
-                onLogout={this.onLogout}/>
+                logout={this.onLogout}/>
             : <Login
                 submitCreds={this.verifyCreds}/>;
     }
