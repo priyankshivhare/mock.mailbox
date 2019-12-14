@@ -20,16 +20,16 @@ export default class PrimarySidebar extends Component {
                 </a>
             </div>
             <div className="inbox-body">
-                <a href="#myModal"  title="Compose" className="btn btn-compose">
+                <a href="#" title="Compose" className="btn btn-compose" onClick={this.props.openComposeModal}>
                     Compose
                 </a>
             </div>
             <ul className="inbox-nav inbox-divider">
                 <li className="active">
-                    <a href="#"><i className="fa fa-inbox"/> Inbox <span className="label label-danger pull-right">{this.props.unreadMails}</span></a>
+                    <a href="#" onClick={this.props.openInbox}><i className="fa fa-inbox"/> Inbox <span className="label label-danger pull-right">{this.props.unreadMails}</span></a>
                 </li>
                 <li>
-                    <a href="#"><i className="fa fa-envelope-o"/> Sent Mail</a>
+                    <a href="#" onClick={this.props.openSentbox}><i className="fa fa-envelope-o"/> Sent Mail</a>
                 </li>
                 <li>
                     <a href="#"><i className="fa fa-bookmark-o"/> Important</a>

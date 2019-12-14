@@ -363,3 +363,9 @@ ul {
     padding: 0px;
     margin: 0px;
 }
+.compose-container {
+    position: absolute;
+    width: 800px;
+    background: white;
+    z-index: 1;
+}
