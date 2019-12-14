@@ -24,8 +24,8 @@ export default class App extends Component {
 
     verifyCreds(username, password) {
         axios.post('/api/verifyCredentials/', {username, password})
-            .then((userData) => {
-                this.setState({isUserAuthenticated: true, userData});
+            .then((res) => {
+                this.setState({isUserAuthenticated: true, userData: res.data});
             }).catch(() => {
             this.setState({isUserAuthenticated: false, userData: undefined});
         });
