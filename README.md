@@ -16,18 +16,23 @@ npm start
 NPM >6 and Node >10 to run properly
 
 ## Key features:
-* User credentials are stored in back-end layer and password is base64 encrypted.
+* User credentials(username and password) are stored in back-end layer using "Base64 encryption" for password protection.
 
-* User can send email to another recipient and the mail will be reflected in sent box
+* Developed Mailbox enables following features to users:
 
-* To open email: click on either subject or to field
+1. Enable send and recieve actual (emails are not sent over SMTP) emails to mock recipient and all email view in sent box.
 
-* There is also provision of deleting email in inbox view
+2. Open an email with a click over on email subject or "To" field
 
-* User can send emails to recipient in mock-data, and that email will be visible once you log in to that account
+3. Delete email from inbox view
 
-* For recipients that are not in mock-data, mails will be visible in sent view, but HTTP request will return 404 since actual mail will not be sent
+4. Send emails to recipient in mock-data (database) with the email availability when user logs in to that account
 
+5. Show emails in sent view for recipients which are not in mock-data. Although, HTTP request will return 404 since actual mail will not be sent
+
+6. Total email count and unread count with real time rendering.
+
+7. Different views for Read and Unread emails as per mockups.
 
 ## To run test
 ```
