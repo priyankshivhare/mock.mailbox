@@ -9,11 +9,12 @@ export default class Mailbox extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {composeModalOpen: false, inboxViewSelected: true};
+        this.state = {composeModalOpen: false, inboxViewSelected: true, mailInState: {}};
         this.openComposeModal = this.openComposeModal.bind(this);
         this.openSentbox = this.openSentbox.bind(this);
         this.openInbox = this.openInbox.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.openEmail = this.openEmail.bind(this);
     }
 
     render() {
@@ -36,9 +37,11 @@ export default class Mailbox extends Component {
                         inboxSelected={this.state.inboxViewSelected}
                     />
                     { this.state.composeModalOpen && <ComposeModal sendMail={this.props.sendMail}
-                                                                   closeModal={this.closeModal}/> }
+                                                                   closeModal={this.closeModal}
+                                                                   mailInState={this.state.mailInState}/> }
                     <MailContainer
                         mails={this.state.inboxViewSelected ? inbox : outbox }
+                        openEmail={this.openEmail}
                         logout={this.props.logout}
                     />
                 </div>
@@ -59,6 +62,12 @@ export default class Mailbox extends Component {
     }
 
     closeModal() {
-        this.setState({composeModalOpen: false});
+        this.setState({composeModalOpen: false, mailInState: {}});
+    }
+
+    openEmail(index) {
+        const {userData} = this.props;
+        const { inbox, outbox} = userData;
+        this.setState({ composeModalOpen: true, mailInState: this.state.inboxViewSelected ? inbox[index] : outbox[index]});
     }
 }

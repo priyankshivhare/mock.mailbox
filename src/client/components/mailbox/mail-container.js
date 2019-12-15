@@ -60,8 +60,11 @@ export default class MailContainer extends Component {
                 </div>
                 <table className="table table-inbox table-hover">
                     <tbody>
-                    { _.map(this.props.mails, mail => {
-                        return <tr className={mail.read ? '' : 'unread'}>
+                    { _.map(this.props.mails, (mail, index) => {
+                        return <tr
+                            className={mail.read || _.isUndefined(mail.read) ? '' : 'unread'}
+                            onClick={() => this.props.openEmail(index)}
+                        >
                             <td className="inbox-small-cells">
                                 <input type="checkbox" className="mail-checkbox"/>
                             </td>
