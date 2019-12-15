@@ -1,8 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-//const mockData = require('./mock-data');
-const _ = require('lodash');
 const app = express();
+const { verifyCredentials, checkIfRecipientExists } = require('./utils');
 
 let mockData = {
     loginData: {
@@ -99,7 +98,7 @@ app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${proc
 app.post('/api/verifyCredentials/', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    if (verifyCredentials(username, password)) {
+    if (verifyCredentials(username, password, mockData)) {
         const userData = mockData.userMailData[username];
         return res.send(200, userData);
     }
@@ -107,7 +106,7 @@ app.post('/api/verifyCredentials/', (req, res) => {
 });
 
 app.post('/api/sendEmail/', (req, res) => {
-    if (checkIfRecipientExists(req.body.to)) {
+    if (checkIfRecipientExists(req.body.to, mockData)) {
         mockData.userMailData[req.body.to].inbox.push({
             to: req.body.to,
             cc: req.body.cc,
@@ -120,21 +119,3 @@ app.post('/api/sendEmail/', (req, res) => {
     }
     return res.send(404, 'Recipient not found');
 });
-
-function verifyCredentials(username, password) {
-    const loginData = mockData.loginData;
-    if (_.get(loginData, username)) {
-        const mockPassword = _.get(loginData[username], `password`);
-        return convertToBase64(password) === mockPassword;
-    }
-    return false;
-}
-
-function convertToBase64(password) {
-    const buff = new Buffer(password);
-    return buff.toString('base64');
-}
-
-function checkIfRecipientExists(recipient) {
-    return !!mockData.userMailData[recipient];
-}
