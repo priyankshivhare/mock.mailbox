@@ -11,7 +11,7 @@ export default class MailContainer extends Component {
             <div className="inbox-head">
                 <h3>Inbox</h3>
                 <div className="pull-right">
-                    <span onClick={this.props.logout}><i className="fa fa-sign-out"/> Log out</span>
+                    <span onClick={this.props.logout} className="logout"><i className="fa fa-sign-out"/> Log out</span>
                 </div>
             </div>
             <div className="inbox-body">

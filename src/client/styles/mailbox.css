@@ -3,6 +3,7 @@
     border-spacing: 0;
     display: table;
     table-layout: fixed;
+    border: 1px solid #ddd;
     width: 100%;
 }
 .mail-box aside {
@@ -373,4 +374,8 @@ ul {
 }
 #inputEmail1, #cc, #inputPassword1 {
     text-align: left;
+}
+
+.logout {
+    cursor: pointer;
 }
