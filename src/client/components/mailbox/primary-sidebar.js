@@ -25,10 +25,10 @@ export default class PrimarySidebar extends Component {
                 </a>
             </div>
             <ul className="inbox-nav inbox-divider">
-                <li className="active">
+                <li className={this.props.inboxSelected && "active"}>
                     <a href="#" onClick={this.props.openInbox}><i className="fa fa-inbox"/> Inbox <span className="label label-danger pull-right">{this.props.unreadMails}</span></a>
                 </li>
-                <li>
+                <li className={!this.props.inboxSelected && "active"}>
                     <a href="#" onClick={this.props.openSentbox}><i className="fa fa-envelope-o"/> Sent Mail</a>
                 </li>
                 <li>
