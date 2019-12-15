@@ -1,7 +1,7 @@
 {
-  "name": "simple-react-full-stack",
+  "name": "simple-mailbox-app",
   "version": "1.0.0",
-  "description": "Boilerplate to build a full stack web application using React, Node.js, Express and Webpack.",
+  "description": "Mailbox application with Mock data",
   "main": "src/server/index.js",
   "scripts": {
     "build": "webpack --mode production",
@@ -10,7 +10,7 @@
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "Sandeep Raveesh",
+  "author": "Priyank Shivhare",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
