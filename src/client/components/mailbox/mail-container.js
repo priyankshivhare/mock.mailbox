@@ -16,38 +16,6 @@ export default class MailContainer extends Component {
             </div>
             <div className="inbox-body">
                 <div className="mail-option">
-                    <div className="chk-all">
-                        <input type="checkbox" className="mail-checkbox mail-group-checkbox"/>
-                        <div className="btn-group">
-                            <a dataToggle="dropdown" href="#" className="btn mini all" aria-expanded="false">
-                                All
-                                <i className="fa fa-angle-down "/>
-                            </a>
-                            <ul className="dropdown-menu">
-                                <li><a href="#"> None</a></li>
-                                <li><a href="#"> Read</a></li>
-                                <li><a href="#"> Unread</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="btn-group">
-                        <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" className="btn mini tooltips">
-                            <i className=" fa fa-refresh"/>
-                        </a>
-                    </div>
-                    <div className="btn-group">
-                        <a data-toggle="dropdown" href="#" className="btn mini blue">
-                            Move to
-                            <i class="fa fa-angle-down "/>
-                        </a>
-                        <ul className="dropdown-menu">
-                            <li><a href="#"><i className="fa fa-pencil"/> Mark as Read</a></li>
-                            <li className="divider"/>
-                            <li><a href="#"><i className="fa fa-trash-o"/> Delete</a></li>
-                        </ul>
-                    </div>
-
                     <ul className="unstyled inbox-pagination">
                         <li><span>1-50 of 234</span></li>
                         <li>
@@ -63,14 +31,17 @@ export default class MailContainer extends Component {
                     { _.map(this.props.mails, (mail, index) => {
                         return <tr
                             className={mail.read || _.isUndefined(mail.read) ? '' : 'unread'}
-                            onClick={() => this.props.openEmail(index)}
                         >
                             <td className="inbox-small-cells">
-                                <input type="checkbox" className="mail-checkbox"/>
+                                { this.props.inboxViewSelected &&
+                                <a href="#" onClick={() => this.props.deleteMail(index)}><i className="fa fa-trash-o"/></a>
+                                }
                             </td>
                             <td className="inbox-small-cells"><i className="fa fa-star"/></td>
-                            <td className="view-message  dont-show">{mail.from}</td>
-                            <td className="view-message ">{mail.subject}</td>
+                            <td className="view-message  dont-show"
+                                onClick={() => this.props.openEmail(index)}>{mail.from}</td>
+                            <td className="view-message "
+                                onClick={() => this.props.openEmail(index)}>{mail.subject}</td>
                             <td className="view-message  text-right">9:27 AM</td>
                         </tr>
                     })}

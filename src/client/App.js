@@ -15,6 +15,7 @@ export default class App extends Component {
         this.sendMail = this.sendMail.bind(this);
         this.sendMailToServer = this.sendMailToServer.bind(this);
         this.changeMailToRead = this.changeMailToRead.bind(this);
+        this.deleteMail = this.deleteMail.bind(this);
     }
 
     render() {
@@ -24,6 +25,7 @@ export default class App extends Component {
                 logout={this.onLogout}
                 sendMail={this.sendMail}
                 changeMailToRead={this.changeMailToRead}
+                deleteMail={this.deleteMail}
                 />
             : <Login
                 submitCreds={this.verifyCreds}/>;
@@ -68,6 +70,18 @@ export default class App extends Component {
         modifiedMail.read = true;
         let modifiedInboxState = this.state.userData.inbox;
         modifiedInboxState[index] = modifiedMail;
+        this.setState({
+            userData: {
+                ...this.state.userData,
+                inbox: modifiedInboxState
+
+            }
+        })
+    }
+
+    deleteMail(index) {
+        let modifiedInboxState = this.state.userData.inbox;
+        modifiedInboxState.splice(index, 1);
         this.setState({
             userData: {
                 ...this.state.userData,

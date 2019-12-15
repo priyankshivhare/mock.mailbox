@@ -40,7 +40,9 @@ export default class Mailbox extends Component {
                                                                    mailInState={this.state.mailInState}/> }
                     <MailContainer
                         mails={this.state.inboxViewSelected ? inbox : outbox }
+                        inboxViewSelected={this.state.inboxViewSelected}
                         openEmail={this.openEmail}
+                        deleteMail={this.props.deleteMail}
                         logout={this.props.logout}
                     />
                 </div>
