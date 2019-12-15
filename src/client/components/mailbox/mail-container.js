@@ -17,7 +17,7 @@ export default class MailContainer extends Component {
             <div className="inbox-body">
                 <div className="mail-option">
                     <ul className="unstyled inbox-pagination">
-                        <li><span>1-50 of 234</span></li>
+                        <li><span>{this.props.mails.length > 0 ? `1-${this.props.mails.length} of ${this.props.mails.length}` : '0'}</span></li>
                         <li>
                             <a className="np-btn" href="#"><i className="fa fa-angle-left  pagination-left"/></a>
                         </li>

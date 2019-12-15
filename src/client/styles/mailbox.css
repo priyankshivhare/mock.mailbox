@@ -368,4 +368,9 @@ ul {
     width: 800px;
     background: white;
     z-index: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+#inputEmail1, #cc, #inputPassword1 {
+    text-align: left;
 }

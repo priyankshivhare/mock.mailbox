@@ -6,6 +6,12 @@
 npm install
 ```
 
+## To start the application
+
+```
+npm start
+```
+
 ## Requires:
 NPM >6 and Node >10 to run properly
 

@@ -5,13 +5,13 @@ const { verifyCredentials, checkIfRecipientExists } = require('./utils');
 
 let mockData = {
     loginData: {
-        //password1234
         'priyankshivhare@hotmail.com': {
+            //username:priyankshivhare@hotmail.com password: password1234
             password: 'cGFzc3dvcmQxMjM0',
 
         },
-        //yahoo123
         'testuser@example.com': {
+            //username: testuser@example.com password: yahoo123
             password: 'eWFob28xMjM='
         }
     },
@@ -35,7 +35,9 @@ let mockData = {
                     to: 'neha@yahoo.com',
                     cc: 'sushil@hotmail.com',
                     subject: 'Example subject',
-                    body: 'The quick brown fox jumps over the lazy dog',
+                    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed ' +
+                    'do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ' +
+                    'ad minim veniam, quis nostrud exercitation ullamco laboris ',
                     read: true
                 },
                 {
@@ -53,7 +55,9 @@ let mockData = {
                     to: 'example@yahoo.com',
                     cc: 'example@hotmail.com',
                     subject: 'Sample subject',
-                    body: 'The quick brown fox jumps over the lazy dog'
+                    body: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque ' +
+                    'laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto ' +
+                    'beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut'
                 }
             ]
         },
@@ -107,7 +111,7 @@ app.post('/api/verifyCredentials/', (req, res) => {
 
 app.post('/api/sendEmail/', (req, res) => {
     if (checkIfRecipientExists(req.body.to, mockData)) {
-        mockData.userMailData[req.body.to].inbox.push({
+        mockData.userMailData[req.body.to].inbox.unshift({
             to: req.body.to,
             cc: req.body.cc,
             subject: req.body.subject,
