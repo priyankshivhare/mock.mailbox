@@ -14,6 +14,7 @@ export default class App extends Component {
         this.onLogout = this.onLogout.bind(this);
         this.sendMail = this.sendMail.bind(this);
         this.sendMailToServer = this.sendMailToServer.bind(this);
+        this.changeMailToRead = this.changeMailToRead.bind(this);
     }
 
     render() {
@@ -22,6 +23,7 @@ export default class App extends Component {
                 userData={this.state.userData}
                 logout={this.onLogout}
                 sendMail={this.sendMail}
+                changeMailToRead={this.changeMailToRead}
                 />
             : <Login
                 submitCreds={this.verifyCreds}/>;
@@ -59,5 +61,19 @@ export default class App extends Component {
             }
         });
         this.sendMailToServer(to, cc, subject, body);
+    }
+
+    changeMailToRead(index) {
+        let modifiedMail = this.state.userData.inbox[index];
+        modifiedMail.read = true;
+        let modifiedInboxState = this.state.userData.inbox;
+        modifiedInboxState[index] = modifiedMail;
+        this.setState({
+            userData: {
+                ...this.state.userData,
+                inbox: modifiedInboxState
+
+            }
+        })
     }
 }

@@ -18,7 +18,6 @@ export default class Mailbox extends Component {
     }
 
     render() {
-        console.log(this.props.userData);
         const {userData} = this.props;
         const {firstName, lastName, email, displayImage, inbox, outbox} = userData;
         const unreadMails = _.filter(inbox, mail => mail.read === false).length;
@@ -68,6 +67,12 @@ export default class Mailbox extends Component {
     openEmail(index) {
         const {userData} = this.props;
         const { inbox, outbox} = userData;
-        this.setState({ composeModalOpen: true, mailInState: this.state.inboxViewSelected ? inbox[index] : outbox[index]});
+        this.setState({
+            composeModalOpen: true,
+            mailInState: this.state.inboxViewSelected ? inbox[index] : outbox[index],
+        });
+        if (this.state.inboxViewSelected) {
+            this.props.changeMailToRead(index);
+        }
     }
 }
