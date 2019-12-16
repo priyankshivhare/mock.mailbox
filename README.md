@@ -16,7 +16,7 @@ npm start
 NPM >6 and Node >10 to run properly
 
 ## Key features:
-* User credentials(username and password) are stored in back-end layer using "Base64 encryption" for password protection.
+* User credentials(username and password) are stored in back-end layer using "Base64 encoding" for password protection.
 
 * Developed Mailbox enables following features to users:
 
